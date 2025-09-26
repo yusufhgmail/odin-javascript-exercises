@@ -29,51 +29,88 @@ function playGame() {
     let humanScore = 0
     let computerScore = 0
 
-
     function playRound(humanChoice, computerChoice) {
 
-    // make humanChoice case insensitive
-    humanChoice = humanChoice.toLowerCase()
+        // make humanChoice case insensitive
+        humanChoice = humanChoice.toLowerCase()
 
-    console.log("humanChoice: " + humanChoice)
+        console.log("humanChoice: " + humanChoice)
 
-    // compare humanChoice and computerChoice and determine who's the winnner. Log the winner in a parameter called winner.
+        // compare humanChoice and computerChoice and determine who's the winnner. Log the winner in a parameter called winner.
 
-    let winner = ""
+        let winner = ""
 
-    if (humanChoice === computerChoice) {
-        winner = "draw"
-    } else if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper") {
-        winner = "human"
-    } else {
-        winner = "computer"
+        if (humanChoice === computerChoice) {
+            winner = "draw"
+        } else if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper") {
+            winner = "human"
+        } else {
+            winner = "computer"
+        }
+
+        console.log("The winner is: " + winner)
+
+        // if winner is human
+            // write "you win, [humanChoice] beats [computerChoice]"
+            // increment humanscore
+
+        if (winner === "human") {
+            console.log("you win, " + humanChoice + " beats " + computerChoice)
+            humanScore++
+
+
+        // if computer wins
+            // write "computer wins, [computerchoice] beats [humanchoice]"
+            // increment computerscore
+
+        } else if (winner === "computer") {
+            console.log("you lose, " + computerChoice + " beats " + humanChoice)
+            computerScore++
+
+        // otherwise console log a draw
+
+        } else {
+            console.log("Draw!! Play again.")
+        }
+
     }
 
-    console.log("The winner is: " + winner)
+    // Initialize rounds var to 0
 
-    // if winner is human
-        // write "you win, [humanChoice] beats [computerChoice]"
-        // increment humanscore
+    let round = 1
 
-    if (winner === "human") {
-        console.log("you win, " + humanChoice + " beats " + computerChoice)
-        humanScore++
+    // write message "Game starting!"
+    console.log("======================")
+    console.log("GAME STARTING!! ARE YOU READY??? LET'S WIN THIS BABY!")
 
+    // Loop 5 times
+    while (round <= 5) {
+        
+        // round++ and write a new line ("============") and then "round number: [round]"
+        console.log("--- ROUND NUMBER: " + round + " ---")
 
-    // if computer wins
-        // write "computer wins, [computerchoice] beats [humanchoice]"
-        // increment computerscore
+        //playround()
+        playRound(getHumanChoice(), getComputerChoice())
 
-    } else if (winner === "computer") {
-        console.log("you lose, " + computerChoice + " beats " + humanChoice)
-        computerScore++
+        // "current scores: ..."
+        console.log("CURRENT SCORES AFTER ROUND:")
+        console.log("Computer: " + computerScore)
+        console.log("Human: " + humanScore)
+        round++
 
-    // otherwise console log a draw
+    }
 
+    console.log("")
+
+    // compare computerScore with humanScore and output the winner.
+    if (humanScore > computerScore) {
+        console.log("HUMAN WON! :)")
+    } else if (humanScore < computerScore) {
+        console.log("COMPUTER WON :(")
     } else {
-        console.log("Draw!! Play again.")
+        console.log("IT WAS A DRAW!!??!")
     }
 
 }
 
-}
+playGame()
