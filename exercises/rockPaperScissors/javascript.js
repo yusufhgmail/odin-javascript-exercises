@@ -23,10 +23,14 @@ function getHumanChoice() {
     return prompt("Enter rock, paper or scissors");
 }
 
-const humanScore = 0
-const computerScore = 0
 
-function playRound(humanChoice, computerChoice) {
+function playGame() {
+
+    let humanScore = 0
+    let computerScore = 0
+
+
+    function playRound(humanChoice, computerChoice) {
 
     // make humanChoice case insensitive
     humanChoice = humanChoice.toLowerCase()
@@ -44,18 +48,32 @@ function playRound(humanChoice, computerChoice) {
     } else {
         winner = "computer"
     }
-    
+
     console.log("The winner is: " + winner)
 
     // if winner is human
         // write "you win, [humanChoice] beats [computerChoice]"
         // increment humanscore
 
-    // otherwise
-        // write "computer wins, [computerchoice] beats [humanchoice]"
+    if (winner === "human") {
+        console.log("you win, " + humanChoice + " beats " + computerChoice)
+        humanScore++
 
+
+    // if computer wins
+        // write "computer wins, [computerchoice] beats [humanchoice]"
         // increment computerscore
+
+    } else if (winner === "computer") {
+        console.log("you lose, " + computerChoice + " beats " + humanChoice)
+        computerScore++
+
+    // otherwise console log a draw
+
+    } else {
+        console.log("Draw!! Play again.")
+    }
 
 }
 
-playRound(getHumanChoice(), getComputerChoice())
+}
