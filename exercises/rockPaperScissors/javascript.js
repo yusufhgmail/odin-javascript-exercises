@@ -1,116 +1,115 @@
 function getComputerChoice() {
-    // Randomize a number between 0-2, put it in "computerChoice"
+	// Randomize a number between 0-2, put it in "computerChoice"
 
-    let computerChoice = Math.floor(Math.random() * 3);
+	let computerChoice = Math.floor(Math.random() * 3);
 
-    // assign rock, paper or scissors if it's 0, 1 or 2
+	// assign rock, paper or scissors if it's 0, 1 or 2
 
-    if (computerChoice === 0) {
-        computerChoice = "rock"
-    } else if (computerChoice === 1) {
-        computerChoice = "paper"
-    } else {
-        computerChoice = "scissors"
-    }
+	if (computerChoice === 0) {
+		computerChoice = "rock";
+	} else if (computerChoice === 1) {
+		computerChoice = "paper";
+	} else {
+		computerChoice = "scissors";
+	}
 
-    console.log("computerChoice: " + computerChoice)
+	console.log("computerChoice: " + computerChoice);
 
-    return computerChoice;
-} 
+	return computerChoice;
+}
 
 function getHumanChoice() {
-    // return the result of a prompt the user to input rock, paper or scissors
-    return prompt("Enter rock, paper or scissors");
+	// return the result of a prompt the user to input rock, paper or scissors
+	return prompt("Enter rock, paper or scissors");
 }
-
 
 function playGame() {
+	let humanScore = 0;
+	let computerScore = 0;
 
-    let humanScore = 0
-    let computerScore = 0
+	function playRound(humanChoice, computerChoice) {
+		// make humanChoice case insensitive
+		humanChoice = humanChoice.toLowerCase();
 
-    function playRound(humanChoice, computerChoice) {
+		console.log("humanChoice: " + humanChoice);
 
-        // make humanChoice case insensitive
-        humanChoice = humanChoice.toLowerCase()
+		// compare humanChoice and computerChoice and determine who's the winnner. Log the winner in a parameter called winner.
 
-        console.log("humanChoice: " + humanChoice)
+		let winner = "";
 
-        // compare humanChoice and computerChoice and determine who's the winnner. Log the winner in a parameter called winner.
+		if (humanChoice === computerChoice) {
+			winner = "draw";
+		} else if (
+			(humanChoice === "rock" && computerChoice === "scissors") ||
+			(humanChoice === "paper" && computerChoice === "rock") ||
+			(humanChoice === "scissors" && computerChoice === "paper")
+		) {
+			winner = "human";
+		} else {
+			winner = "computer";
+		}
 
-        let winner = ""
+		console.log("The winner is: " + winner);
 
-        if (humanChoice === computerChoice) {
-            winner = "draw"
-        } else if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper") {
-            winner = "human"
-        } else {
-            winner = "computer"
-        }
+		// if winner is human
+		// write "you win, [humanChoice] beats [computerChoice]"
+		// increment humanscore
 
-        console.log("The winner is: " + winner)
+		if (winner === "human") {
+			console.log("you win, " + humanChoice + " beats " + computerChoice);
+			humanScore++;
 
-        // if winner is human
-            // write "you win, [humanChoice] beats [computerChoice]"
-            // increment humanscore
+			// if computer wins
+			// write "computer wins, [computerchoice] beats [humanchoice]"
+			// increment computerscore
+		} else if (winner === "computer") {
+			console.log("you lose, " + computerChoice + " beats " + humanChoice);
+			computerScore++;
 
-        if (winner === "human") {
-            console.log("you win, " + humanChoice + " beats " + computerChoice)
-            humanScore++
+			// otherwise console log a draw
+		} else {
+			console.log("Draw!! Play again.");
+		}
+	}
 
+	// Initialize rounds var to 0
 
-        // if computer wins
-            // write "computer wins, [computerchoice] beats [humanchoice]"
-            // increment computerscore
+	let round = 1;
 
-        } else if (winner === "computer") {
-            console.log("you lose, " + computerChoice + " beats " + humanChoice)
-            computerScore++
+	// write message "Game starting!"
+	console.log("======================");
+	console.log("GAME STARTING!! ARE YOU READY??? LET'S WIN THIS BABY!");
 
-        // otherwise console log a draw
+	// Loop 5 times
+	while (round <= 5) {
+		// round++ and write a new line ("============") and then "round number: [round]"
+		console.log("--- ROUND NUMBER: " + round + " ---");
 
-        } else {
-            console.log("Draw!! Play again.")
-        }
+		//playround()
+		playRound(getHumanChoice(), getComputerChoice());
 
-    }
+		// "current scores: ..."
+		console.log("CURRENT SCORES AFTER ROUND:");
+		console.log("Computer: " + computerScore);
+		console.log("Human: " + humanScore);
+		round++;
+	}
 
-    // Initialize rounds var to 0
+	console.log("");
 
-    let round = 1
-
-    // write message "Game starting!"
-    console.log("======================")
-    console.log("GAME STARTING!! ARE YOU READY??? LET'S WIN THIS BABY!")
-
-    // Loop 5 times
-    while (round <= 5) {
-        
-        // round++ and write a new line ("============") and then "round number: [round]"
-        console.log("--- ROUND NUMBER: " + round + " ---")
-
-        //playround()
-        playRound(getHumanChoice(), getComputerChoice())
-
-        // "current scores: ..."
-        console.log("CURRENT SCORES AFTER ROUND:")
-        console.log("Computer: " + computerScore)
-        console.log("Human: " + humanScore)
-        round++
-
-    }
-
-    console.log("")
-
-    // compare computerScore with humanScore and output the winner.
-    if (humanScore > computerScore) {
-        console.log("HUMAN WON! :)")
-    } else if (humanScore < computerScore) {
-        console.log("COMPUTER WON :(")
-    } else {
-        console.log("IT WAS A DRAW!!??!")
-    }
-
+	// compare computerScore with humanScore and output the winner.
+	if (humanScore > computerScore) {
+		console.log("HUMAN WON! :)");
+	} else if (humanScore < computerScore) {
+		console.log("COMPUTER WON :(");
+	} else {
+		console.log("IT WAS A DRAW!!??!");
+	}
 }
 
-playGame()
+playGame();
+
+const x = { a: 1, b: 2 };
+function foo() {
+	return "hello";
+}
