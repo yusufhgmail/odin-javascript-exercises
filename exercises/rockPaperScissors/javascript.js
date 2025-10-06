@@ -107,6 +107,14 @@ function playGame() {
 	}
 }
 
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", (e) => playRound("rock"));
+paper.addEventListener("click", (e) => playRound("paper"));
+scissors.addEventListener("click", (e) => playRound("scissors"));
+
 playGame();
 
 const x = { a: 1, b: 2 };
