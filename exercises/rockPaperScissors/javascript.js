@@ -92,7 +92,7 @@ function playGame() {
 		console.log("CURRENT SCORES AFTER ROUND:");
 		console.log("Computer: " + computerScore);
 		console.log("Human: " + humanScore);
-		round++;
+		// round++;
 	}
 
 	console.log("");
